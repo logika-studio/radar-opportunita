@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+<style>
+  /* Nessun font e nessuna immagine da fuori: il pannello non fa una sola
+     chiamata in rete. Vale la stessa regola del sito PARTECIPA. */
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         font-size: 13px; color: #1f2430; margin: 0; padding: 14px; }
+  h2 { font-size: 15px; color: #1C2E6E; margin: 0 0 4px; }
+  p.intro { color: #5a6172; margin: 0 0 16px; line-height: 1.45; }
+  label { display: block; font-weight: 600; margin: 14px 0 4px; }
+  .aiuto { font-weight: 400; color: #6b7280; display: block; margin-top: 2px; line-height: 1.4; }
+  input, select, textarea { width: 100%; box-sizing: border-box; padding: 7px 8px;
+    border: 1px solid #c8ccd6; border-radius: 6px; font: inherit; background: #fff; }
+  textarea { min-height: 78px; resize: vertical; }
+  .due { display: flex; gap: 10px; }
+  .due > div { flex: 1; }
+  button { background: #1C2E6E; color: #fff; border: 0; border-radius: 6px;
+    padding: 9px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+  button.chiaro { background: #fff; color: #1C2E6E; border: 1px solid #1C2E6E; }
+  button:disabled { opacity: .55; cursor: default; }
+  .azioni { display: flex; gap: 8px; margin: 18px 0 6px; }
+  .esito { margin-top: 12px; padding: 9px 10px; border-radius: 6px; line-height: 1.45; display: none; }
+  .esito.ok { background: #e8f4ec; color: #14532d; display: block; }
+  .esito.ko { background: #fdecec; color: #7f1d1d; display: block; }
+  details { margin-top: 18px; border-top: 1px solid #e5e7eb; padding-top: 12px; }
+  summary { cursor: pointer; font-weight: 600; color: #1C2E6E; }
+  .stato { font-size: 12px; color: #6b7280; margin-top: 16px; border-top: 1px solid #e5e7eb;
+           padding-top: 10px; line-height: 1.5; }
+  .firma { margin-top: 18px; border-top: 1px solid #e5e7eb; padding-top: 12px;
+           font-size: 11.5px; color: #6b7280; line-height: 1.55;
+           display: flex; gap: 10px; align-items: flex-start; }
+  .firma strong { color: #1C2E6E; }
+  .firma a { color: #1C2E6E; }
+  .firma .riga { margin-top: 5px; }
+  .firma__logo { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 5px; display: block; }
+</style>
+</head>
+<body>
+
+<h2>Impostazioni del radar</h2>
+<p class="intro">Quello che cambi qui vale da subito: non serve toccare il codice.</p>
+
+<label for="chiave">Chiave di Gemini
+  <span class="aiuto">Si prende gratis su <b>aistudio.google.com/apikey</b>. Resta nel tuo
+  progetto: chi copierà questo foglio dovrà mettere la sua.</span></label>
+<input type="password" id="chiave" placeholder="AIzaSy…" autocomplete="off">
+
+<div class="azioni">
+  <button class="chiaro" id="prova" type="button">Prova la chiave</button>
+</div>
+
+<label for="modello">Modello
+  <span class="aiuto">L'elenco è quello che <b>la tua chiave</b> può usare davvero: i nomi
+  cambiano spesso e non sono uguali per tutti. Con il piano gratuito i primi due bastano;
+  se ricevi errori di quota (429), scegli un <b>lite</b>: ha il tetto più largo.</span></label>
+<select id="modello"></select>
+<input type="text" id="modello_altro" placeholder="nome del modello" style="display:none; margin-top:6px">
+<div class="aiuto" id="modelli_stato"></div>
+
+<label>A chi guardiamo
+  <span class="aiuto">L'età delle persone a cui servono le opportunità. È l'unico criterio
+  di selezione, e finisce nella richiesta al modello.</span></label>
+<div class="due">
+  <div><input type="number" id="eta_min" min="0" max="99"></div>
+  <div><input type="number" id="eta_max" min="0" max="99"></div>
+</div>
+
+<label for="regole_extra">Regole aggiuntive
+  <span class="aiuto">È il campo che adatta il radar al tuo territorio, senza programmare.
+  Per esempio: «tieni solo ciò che riguarda il Vallo di Diano». Aggiungine una alla volta e
+  riprova: due insieme non dicono quale ha funzionato.</span></label>
+<textarea id="regole_extra" placeholder="(facoltativo)"></textarea>
+
+<label>Quando si sveglia
+  <span class="aiuto">Il giorno e l'ora del giro automatico. Diventa effettivo quando accendi
+  la sveglia dal menu.</span></label>
+<div class="due">
+  <div>
+    <select id="giorno_sveglia">
+      <option value="MONDAY">lunedì</option>
+      <option value="TUESDAY">martedì</option>
+      <option value="WEDNESDAY">mercoledì</option>
+      <option value="THURSDAY">giovedì</option>
+      <option value="FRIDAY">venerdì</option>
+      <option value="SATURDAY">sabato</option>
+      <option value="SUNDAY">domenica</option>
+    </select>
+  </div>
+  <div><input type="number" id="ora_sveglia" min="0" max="23"></div>
+</div>
+
+<label for="invio_automatico">Il riepilogo parte da solo?
+  <span class="aiuto">Di norma no: resta nelle <b>bozze</b> di Gmail e lo invia una persona
+  (menu «Radar → Invia il riepilogo che aspetta»). È quella persona a rendere lo strumento
+  adottabile da un ufficio. Accendendolo, partono email con scadenze che nessuno ha
+  controllato.</span></label>
+<select id="invio_automatico">
+  <option value="no">no — resta nelle bozze (consigliato)</option>
+  <option value="sì">sì — invia da solo, senza che nessuno lo legga</option>
+</select>
+
+<label for="max_chiamate_per_giro">Tetto di chiamate per giro
+  <span class="aiuto">Quando ci si arriva, il giro si chiude e le fonti rimaste si leggeranno
+  la volta dopo: meglio un giro incompleto che una quota bruciata.</span></label>
+<input type="number" id="max_chiamate_per_giro" min="1" max="100">
+
+<details>
+  <summary>Impostazioni avanzate</summary>
+
+  <label for="max_caratteri_pagina">Quanto testo leggere di ogni pagina
+    <span class="aiuto">Quasi tutto il costo dipende da qui. Le prime novemila battute di una
+    pagina di bandi contengono già quello che serve.</span></label>
+  <input type="number" id="max_caratteri_pagina" min="1000" max="60000" step="500">
+
+  <label for="min_caratteri_pagina">Sotto quante battute non è una pagina di bando</label>
+  <input type="number" id="min_caratteri_pagina" min="50" max="5000" step="50">
+
+  <label for="max_token_risposta">Lunghezza massima della risposta
+    <span class="aiuto">Se nel registro compare «risposta troncata», alza questo numero.</span></label>
+  <input type="number" id="max_token_risposta" min="200" max="4000" step="100">
+
+  <label for="html_demo">Modalità dimostrativa
+    <span class="aiuto">Incolla qui il testo di una pagina salvata: il radar lavorerà su quello
+    senza uscire in rete. Serve quando la connessione non regge. Svuota per tornare
+    normale.</span></label>
+  <textarea id="html_demo" placeholder="(vuoto = il radar legge i portali veri)"></textarea>
+</details>
+
+<div class="azioni">
+  <button id="salva" type="button">Salva</button>
+</div>
+
+<div class="esito" id="esito"></div>
+<div class="stato" id="stato">Carico…</div>
+
+<!-- La firma di chi lo ha costruito e lo tiene in piedi. Sta qui e non in un
+     avviso invadente: si vede quando si aprono le impostazioni, cioè quando
+     serve sapere a chi chiedere. -->
+<div class="firma">
+  <a href="https://logikastudio.it/" target="_blank" rel="noopener">
+    <img class="firma__logo" alt="Logika.studio" src="data:image/png;base64,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">
+  </a>
+  <div>
+    <div>Il <strong>Radar delle opportunità</strong> è uno strumento libero del progetto
+      <a href="https://partecipagiovanicampania.it/" target="_blank" rel="noopener">PARTECIPA — Giovani Campania</a>.</div>
+    <div class="riga">Ideazione, sviluppo e manutenzione:
+      <strong><a href="https://logikastudio.it/" target="_blank" rel="noopener">Logika.studio</a></strong>
+      — partner tecnico.</div>
+  </div>
+</div>
+
+<script>
+  // 'modello' non è qui dentro: ha una tendina sua, riempita con i modelli che
+  // la chiave può davvero usare (vedi riempiModelli).
+  var CAMPI = ['eta_min', 'eta_max', 'regole_extra', 'invio_automatico',
+               'giorno_sveglia', 'ora_sveglia',
+               'max_chiamate_per_giro', 'max_caratteri_pagina',
+               'min_caratteri_pagina', 'max_token_risposta', 'html_demo'];
+
+  var ALTRO = '__altro';
+
+  function el(id) { return document.getElementById(id); }
+
+  /** Riempie la tendina dei modelli e ci seleziona quello in uso. */
+  function riempiModelli(esito, sceltoAdesso) {
+    var select = el('modello');
+    var scelto = sceltoAdesso || select.getAttribute('data-scelto') || '';
+    select.innerHTML = '';
+
+    esito.modelli.forEach(function (nome) {
+      var o = document.createElement('option');
+      o.value = nome;
+      o.textContent = nome;
+      select.appendChild(o);
+    });
+
+    // Se il modello salvato non è nell'elenco (chiave cambiata, nome ritirato)
+    // lo si mostra lo stesso: sparire senza dirlo confonde e basta.
+    if (scelto && esito.modelli.indexOf(scelto) === -1) {
+      var o = document.createElement('option');
+      o.value = scelto;
+      o.textContent = scelto + ' (non nell\'elenco)';
+      select.appendChild(o);
+    }
+
+    var altro = document.createElement('option');
+    altro.value = ALTRO;
+    altro.textContent = 'altro… (scrivo io il nome)';
+    select.appendChild(altro);
+
+    if (scelto) select.value = scelto;
+    el('modelli_stato').textContent = esito.messaggio || '';
+  }
+
+  function modelloScelto() {
+    return el('modello').value === ALTRO
+      ? el('modello_altro').value.trim()
+      : el('modello').value;
+  }
+
+  function mostra(testo, ok) {
+    var e = el('esito');
+    e.textContent = testo;
+    e.className = 'esito ' + (ok ? 'ok' : 'ko');
+  }
+
+  function carica(stato) {
+    CAMPI.forEach(function (c) {
+      if (stato.configurazione[c] !== undefined) el(c).value = stato.configurazione[c];
+    });
+
+    el('modello').setAttribute('data-scelto', stato.configurazione.modello || '');
+    riempiModelli({ modelli: [stato.configurazione.modello], messaggio: 'cerco i modelli…' },
+                  stato.configurazione.modello);
+    google.script.run.withSuccessHandler(function (esito) {
+      riempiModelli(esito, stato.configurazione.modello);
+    }).pannelloModelli();
+
+    el('chiave').placeholder = stato.chiavePresente
+      ? '•••• già impostata (scrivi qui per sostituirla)'
+      : 'AIzaSy…';
+    el('stato').innerHTML =
+      (stato.chiavePresente ? '✅ chiave impostata' : '⚠️ chiave mancante') + '<br>' +
+      (stato.svegliaAttiva ? '✅ sveglia accesa' : '○ sveglia spenta — il radar gira solo a mano');
+  }
+
+  function salva() {
+    var dati = {};
+    CAMPI.forEach(function (c) { dati[c] = el(c).value; });
+    dati.modello = modelloScelto();
+    if (el('chiave').value.trim()) dati.chiave = el('chiave').value.trim();
+
+    el('salva').disabled = true;
+    google.script.run
+      .withSuccessHandler(function (messaggio) {
+        el('salva').disabled = false;
+        el('chiave').value = '';
+        mostra(messaggio, true);
+        google.script.run.withSuccessHandler(carica).pannelloStato();
+      })
+      .withFailureHandler(function (errore) {
+        el('salva').disabled = false;
+        mostra(errore.message, false);
+      })
+      .pannelloSalva(dati);
+  }
+
+  function prova() {
+    var bottone = el('prova');
+    bottone.disabled = true;
+    mostra('Sto provando…', true);
+
+    function chiama() {
+      google.script.run
+        .withSuccessHandler(function (esito) {
+          bottone.disabled = false;
+          mostra(esito.messaggio, esito.ok);
+        })
+        .withFailureHandler(function (errore) {
+          bottone.disabled = false;
+          mostra(errore.message, false);
+        })
+        .pannelloProvaChiave();
+    }
+
+    // Se c'è una chiave nuova nel campo, prima si salva e poi si prova: provare
+    // quella vecchia mentre se ne sta scrivendo un'altra confonde e basta.
+    if (el('chiave').value.trim()) {
+      google.script.run
+        .withSuccessHandler(function () { el('chiave').value = ''; chiama(); })
+        .withFailureHandler(function (errore) {
+          bottone.disabled = false;
+          mostra(errore.message, false);
+        })
+        .pannelloSalva({ chiave: el('chiave').value.trim() });
+    } else {
+      chiama();
+    }
+  }
+
+  el('salva').addEventListener('click', salva);
+  el('prova').addEventListener('click', prova);
+  el('modello').addEventListener('change', function () {
+    el('modello_altro').style.display = (el('modello').value === ALTRO) ? 'block' : 'none';
+  });
+  google.script.run.withSuccessHandler(carica).pannelloStato();
+</script>
+</body>
+</html>
