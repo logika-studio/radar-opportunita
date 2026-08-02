@@ -72,14 +72,19 @@ flowchart TD
 
 > **Servono:** un account Google e una chiave gratuita di Gemini
 > ([aistudio.google.com/apikey](https://aistudio.google.com/apikey) — nessuna carta di credito).
+>
+> Il foglio di riferimento, con le tre schede già intestate e qualche fonte d'esempio, è questo:
+> [**Radar opportunità**](https://docs.google.com/spreadsheets/d/1z-kzfEI8kjuBTVfTvzrhK9gaJGwJwdG3q7CCyyxl_6E/edit?usp=sharing)
+> (sola lettura) — la copia si fa dal pulsante qui sopra, o dal punto 1.
 
 **Il modo veloce**
 
 1. [**Crea la tua copia del foglio**](https://docs.google.com/spreadsheets/d/1z-kzfEI8kjuBTVfTvzrhK9gaJGwJwdG3q7CCyyxl_6E/copy) → finisce sul tuo Drive, con il codice già dentro. Salta al punto **5**.
 
-**Il modo da zero**
+**Il modo da zero** — se preferisci vedere ogni pezzo al suo posto
 
-2. Crea un Foglio vuoto su [sheets.new](https://sheets.new) e chiamalo `Radar opportunità`.
+2. Crea un Foglio vuoto su [sheets.new](https://sheets.new) e chiamalo `Radar opportunità`. Le tre
+   schede non le crei tu: le fa il programma al punto 6, con nomi e intestazioni giusti.
 3. **Estensioni → Apps Script**: svuota `Codice.gs` e incolla [`installazione-rapida/Codice.gs`](installazione-rapida/Codice.gs).
 4. **+ → HTML**, nome esatto `Pannello`, incolla [`installazione-rapida/Pannello.html`](installazione-rapida/Pannello.html). Salva.
 
@@ -161,7 +166,6 @@ Con 4–6 fonti si sta stabilmente **sotto le 5 chiamate a settimana**.
 | [`apps-script/06-Preparazione.gs`](apps-script/06-Preparazione.gs) | crea i tre fogli, la diagnostica |
 | [`apps-script/Pannello.html`](apps-script/Pannello.html) | il pannello delle impostazioni |
 | [`installazione-rapida/`](installazione-rapida/) | gli stessi file impacchettati in due, per l'installazione |
-| [`foglio-esempio/`](foglio-esempio/) | il foglio `.xlsx` già intestato, e lo script che lo genera |
 
 I sette file sono divisi per **come le cose accadono** — configurazione, fonti, modello, foglio,
 giro, menu, preparazione — e sono commentati per essere letti da chi programma poco: nascono da un
