@@ -94,7 +94,10 @@ flowchart TD
 
 Se qualcosa non torna: **Radar → Diagnostica** dice a che punto si è rotto.
 
-> 📘 **[La guida passo-passo del laboratorio](guida/radar-guida-passo-passo.html)** — gli stessi passi raccontati per esteso, con le schermate che vedrai, gli errori tipici e le spunte per non perdere il segno. È il materiale distribuito alla Certosa di Padula: scaricala e aprila nel browser.
+> 📘 **Guida passo-passo (IT/EN)** — gli stessi passi raccontati per esteso, con le schermate che
+> vedrai, gli errori tipici e le spunte per non perdere il segno, insieme al video del laboratorio:
+> sta sul sito del progetto, nella pagina del laboratorio della Certosa di Padula —
+> [partecipagiovanicampania.it](https://partecipagiovanicampania.it/evento-1-agosto-2026/).
 
 ## Le fonti: quali funzionano, e perché quasi tutte no
 
@@ -159,7 +162,6 @@ Con 4–6 fonti si sta stabilmente **sotto le 5 chiamate a settimana**.
 | [`apps-script/Pannello.html`](apps-script/Pannello.html) | il pannello delle impostazioni |
 | [`installazione-rapida/`](installazione-rapida/) | gli stessi file impacchettati in due, per l'installazione |
 | [`foglio-esempio/`](foglio-esempio/) | il foglio `.xlsx` già intestato, e lo script che lo genera |
-| [`guida/`](guida/) | la guida passo-passo del laboratorio, un file HTML solo: si apre nel browser, si stampa, si mette su una chiavetta |
 
 I sette file sono divisi per **come le cose accadono** — configurazione, fonti, modello, foglio,
 giro, menu, preparazione — e sono commentati per essere letti da chi programma poco: nascono da un
