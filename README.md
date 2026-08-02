@@ -1,86 +1,101 @@
+<div align="center">
+
+<img src="assets/logo-logika-studio.png" alt="Logika.studio" width="76">
+
 # Radar delle opportunità
 
-**Un Foglio Google che ogni lunedì legge i portali dei bandi, tiene solo ciò che riguarda i
-giovani del territorio e prepara all'ufficio una bozza di riepilogo da approvare.**
-Nessun server, nessun abbonamento, nessun dato personale. Si installa in dieci minuti e resta
-di chi lo installa.
+**Un Foglio Google che ogni lunedì legge i portali dei bandi, tiene solo ciò che riguarda i giovani
+del territorio e prepara all'ufficio una bozza di riepilogo da approvare.**
 
-> Nato come laboratorio pubblico della giornata **«Cittadinanza digitale e intelligenza
-> artificiale»** — Certosa di Padula, 1 agosto 2026 — dentro il progetto **PARTECIPA — Giovani
-> Campania** (Università degli Studi di Salerno, DISUFF / DiSoSW Lab · Regione Campania).
-> Ideazione, sviluppo e manutenzione: **[Logika.studio](https://logikastudio.it)**.
+Nessun server. Nessun abbonamento. Nessun dato personale.
+Si installa in dieci minuti e resta di chi lo installa.
+
+[![Licenza MIT](https://img.shields.io/badge/licenza-MIT-1C2E6E?style=flat-square)](LICENSE)
+![Google Apps Script](https://img.shields.io/badge/Google_Apps_Script-1C2E6E?style=flat-square)
+![Gemini · piano gratuito](https://img.shields.io/badge/Gemini-piano_gratuito-1C2E6E?style=flat-square)
+![Costo 0 €](https://img.shields.io/badge/costo-0_€-B45309?style=flat-square)
+![Nessun server](https://img.shields.io/badge/server-nessuno-B45309?style=flat-square)
+
+[![Crea la tua copia del foglio](https://img.shields.io/badge/▸%20CREA%20LA%20TUA%20COPIA%20DEL%20FOGLIO-1C2E6E?style=for-the-badge)](https://docs.google.com/spreadsheets/d/1z-kzfEI8kjuBTVfTvzrhK9gaJGwJwdG3q7CCyyxl_6E/copy)
+
+<sub>Nato come laboratorio pubblico della giornata **«Cittadinanza digitale e intelligenza artificiale»**<br>
+Certosa di Padula, 1 agosto 2026 · progetto **PARTECIPA — Giovani Campania**<br>
+Università degli Studi di Salerno (DISUFF / DiSoSW Lab) · Regione Campania</sub>
+
+</div>
 
 ---
 
-## Che problema risolve
+## Il problema
 
-Le opportunità per i ragazzi ci sono — bandi, borse, servizio civile, mobilità europea — ma
-stanno sparse su dieci portali, scritte in burocratese, e scadono mentre nessuno le legge. Un
-ufficio piccolo non ha una persona che ogni lunedì mattina apre dieci siti.
+Le opportunità per i ragazzi ci sono — bandi, borse, servizio civile, mobilità europea — ma stanno
+sparse su dieci portali, scritte in burocratese, e scadono mentre nessuno le legge. Un ufficio
+piccolo non ha una persona che ogni lunedì mattina apre dieci siti.
 
-Il radar fa quella cosa lì, e solo quella:
+Il radar fa quella cosa lì, e solo quella.
 
 ```
-[Portali bandi] --> [Apps Script] --> [Gemini, piano gratuito]
-                          |                    |
-                          |  <-- l'elenco delle opportunità, o "qui non c'è niente"
-                          v
-                [Foglio: OPPORTUNITÀ + LOG]
-                          |
-                          +--> [Gmail: BOZZA] --(la legge e la invia una persona)--> destinatari
-                          |
-                    [sveglia settimanale]
+   [Portali bandi]  ──►  [Apps Script]  ──►  [Gemini · piano gratuito]
+                               │                        │
+                               │   ◄── l'elenco delle opportunità,
+                               │       oppure «qui non c'è niente»
+                               ▼
+                   ┌───────────────────────────┐
+                   │  Foglio: OPPORTUNITÀ · LOG │
+                   └───────────────────────────┘
+                               │
+                               ├──►  [Gmail: BOZZA]  ──(la legge e la invia una persona)──►  destinatari
+                               │
+                          [sveglia settimanale]
 ```
 
-## Che cosa NON fa — ed è la parte importante
+## Che cosa **non** fa — ed è la parte importante
 
-- **Non decide.** Propone righe; lo stato «da verificare» lo cambia una persona.
-- **Non invia da solo.** Prepara una bozza. L'invio è un gesto umano, ogni volta. (Si può
-  accendere l'invio automatico dal pannello: è spento, e ogni invio finisce nel registro.)
-- **Non garantisce le scadenze.** Ogni riga porta il link: si controlla alla fonte, sempre.
-- **Non inventa.** Se un dato non è scritto nella pagina, la casella resta **vuota**. Una casella
-  vuota si nota; una data sbagliata no.
-- **Non tratta dati personali.** Nel foglio non c'è nessuna colonna con dati di persone: gli unici
-  indirizzi sono quelli dei destinatari, scelti dall'ufficio.
-- **Non vede quello che non gli hai dato.** Se una fonte manca, per il radar non esiste.
+|  | |
+|---|---|
+| **Non decide** | Propone righe; lo stato «da verificare» lo cambia una persona. |
+| **Non invia da solo** | Prepara una bozza. L'invio è un gesto umano, ogni volta. |
+| **Non garantisce le scadenze** | Ogni riga porta il link: si controlla alla fonte, sempre. |
+| **Non inventa** | Se un dato non è scritto nella pagina, la casella resta **vuota**. Una casella vuota si nota; una data sbagliata no. |
+| **Non tratta dati personali** | Nel foglio nessuna colonna con dati di persone: gli unici indirizzi sono i destinatari, scelti dall'ufficio. |
+| **Non vede ciò che non gli hai dato** | Se una fonte manca, per il radar non esiste. |
 
-## Installarlo (≈10 minuti)
+## Installarlo — 10 minuti, una volta sola
 
-**Servono:** un account Google e una chiave gratuita di Gemini
-([aistudio.google.com/apikey](https://aistudio.google.com/apikey) — nessuna carta di credito).
+> **Servono:** un account Google e una chiave gratuita di Gemini
+> ([aistudio.google.com/apikey](https://aistudio.google.com/apikey) — nessuna carta di credito).
 
-1. **Copia il foglio già pronto** →
-   [**Crea la tua copia**](https://docs.google.com/spreadsheets/d/1z-kzfEI8kjuBTVfTvzrhK9gaJGwJwdG3q7CCyyxl_6E/copy)
-   Finisce sul tuo Drive, con il codice già dentro: salta al punto 5.
-2. *(in alternativa, partendo da zero)* crea un Foglio vuoto su [sheets.new](https://sheets.new)
-   e chiamalo `Radar opportunità`.
-3. **Estensioni → Apps Script**. Cancella quello che trovi in `Codice.gs` e incolla
-   [`installazione-rapida/Codice.gs`](installazione-rapida/Codice.gs).
-4. **+ → HTML**, chiamalo esattamente `Pannello`, e incolla
-   [`installazione-rapida/Pannello.html`](installazione-rapida/Pannello.html). Salva.
+**Il modo veloce**
+
+1. [**Crea la tua copia del foglio**](https://docs.google.com/spreadsheets/d/1z-kzfEI8kjuBTVfTvzrhK9gaJGwJwdG3q7CCyyxl_6E/copy) → finisce sul tuo Drive, con il codice già dentro. Salta al punto **5**.
+
+**Il modo da zero**
+
+2. Crea un Foglio vuoto su [sheets.new](https://sheets.new) e chiamalo `Radar opportunità`.
+3. **Estensioni → Apps Script**: svuota `Codice.gs` e incolla [`installazione-rapida/Codice.gs`](installazione-rapida/Codice.gs).
+4. **+ → HTML**, nome esatto `Pannello`, incolla [`installazione-rapida/Pannello.html`](installazione-rapida/Pannello.html). Salva.
+
+**Comune a entrambi**
+
 5. Torna sul foglio e **ricaricalo**: compare il menu **🛰️ Radar**.
-6. **Radar → Prepara il foglio** (la prima volta Google chiede l'autorizzazione: *Avanzate →
-   Apri… (non sicura)* — è il tuo codice, nel tuo account).
-7. **Radar → Impostazioni…**: incolla la chiave, premi **Prova la chiave**, scegli il modello
-   dalla tendina, **Salva**.
-8. Nel foglio `FONTI`: i portali da sorvegliare (colonna C = `sì`) e almeno un indirizzo email
-   nella **colonna E**.
-9. **Radar → Esegui adesso**. Le righe compaiono in `OPPORTUNITÀ`, il riepilogo resta **nelle
-   bozze di Gmail**.
-10. **Radar → Accendi la sveglia settimanale**: da qui in poi va da solo.
+6. **Radar → Prepara il foglio**. La prima volta Google chiede l'autorizzazione: *Avanzate → Apri… (non sicura)*. È il tuo codice, nel tuo account.
+7. **Radar → Impostazioni…**: incolla la chiave, premi **Prova la chiave**, scegli il modello dalla tendina, **Salva**.
+8. Nel foglio `FONTI`: i portali da sorvegliare (colonna C = `sì`) e almeno un indirizzo email nella **colonna E**.
+9. **Radar → Esegui adesso**. Le righe compaiono in `OPPORTUNITÀ`; il riepilogo resta **nelle bozze di Gmail**.
+10. **Radar → Accendi la sveglia settimanale**. Da qui in poi va da solo.
 
 Se qualcosa non torna: **Radar → Diagnostica** dice a che punto si è rotto.
 
 ## Le fonti: quali funzionano, e perché quasi tutte no
 
-Il radar legge l'HTML **così com'è**: non esegue JavaScript. Questo esclude gran parte dei
-portali della pubblica amministrazione, che l'elenco dei bandi lo costruiscono nel browser — per
-il radar quelle pagine sono vuote. Due regole, imparate provando: **mai le home** (servono le
-pagine di *elenco avvisi*) e **provare prima di fidarsi**.
+Il radar legge l'HTML **così com'è**: non esegue JavaScript. Questo esclude gran parte dei portali
+della pubblica amministrazione, che l'elenco dei bandi lo costruiscono nel browser — per il radar
+quelle pagine sono vuote. Due regole, imparate provando: **mai le home** (servono le pagine di
+*elenco avvisi*) e **provare prima di fidarsi**.
 
-Verificate il 2 agosto 2026:
+**Verificate il 2 agosto 2026** ✓
 
-| Fonte | Indirizzo | Esito |
+| Fonte | Indirizzo | Esito della prova |
 |---|---|---|
 | Giovani2030 — bandi | `giovani2030.it/bandi-e-opportunita/` | **8 opportunità** con scadenze reali |
 | Politiche Giovanili — avvisi | `politichegiovanili.gov.it/comunicazione/avvisi-e-bandi/` | 1 bando, scadenza corretta |
@@ -88,13 +103,14 @@ Verificate il 2 agosto 2026:
 | Eurodesk Italy — notizie | `eurodesk.it/notizie` | 8 voci |
 | Cliclavoro | `cliclavoro.gov.it` | risponde bene |
 
-Da evitare: `bandi.sviluppocampania.it` (richiede JavaScript), `portale-giovani.regione.campania.it`
-(solo menu), e in generale le home. La fonte più utile resta **la pagina avvisi del proprio
-Comune**: è quella che nessun portale nazionale contiene.
+**Da evitare** ✗ — `bandi.sviluppocampania.it` (richiede JavaScript), `portale-giovani.regione.campania.it`
+(solo menu), e in generale le **home**. La fonte più utile di tutte resta **la pagina avvisi del
+proprio Comune**: è quella che nessun portale nazionale contiene, ed è il motivo per cui questo
+strumento ha senso in un ufficio.
 
 ## Adattarlo senza programmare
 
-Dal pannello **Impostazioni**, senza toccare il codice:
+Tutto dal pannello **Impostazioni**, senza toccare il codice:
 
 | Voglio… | Dove |
 |---|---|
@@ -102,17 +118,22 @@ Dal pannello **Impostazioni**, senza toccare il codice:
 | restringere a un territorio | *Regole aggiuntive* → «tieni solo ciò che riguarda il Vallo di Diano» |
 | cambiare giorno e ora del giro | *Quando si sveglia* → poi *Accendi la sveglia* |
 | spendere meno | abbassa il *tetto di chiamate* e *quanto testo leggere* |
-| far partire le mail da sole | *Il riepilogo parte da solo?* (spento di default) |
+| far partire le mail da sole | *Il riepilogo parte da solo?* — spento di default |
 | provare senza rete | avanzate → *Modalità dimostrativa* |
 | aggiungere fonti o destinatari | righe e colonna E del foglio `FONTI` |
 
 ## Quanto consuma
 
-Il piano gratuito di Gemini non si paga ma si esaurisce. Il radar ci sta dentro con ampio margine
-grazie a tre risparmi fatti **prima** di spendere una chiamata: le pagine troppo corte o senza una
-parola da bando non arrivano al modello; le pagine **identiche** al giro precedente nemmeno (è il
-risparmio più grosso: un portale pubblica ogni due settimane, il radar passa ogni lunedì); e c'è un
-tetto duro di chiamate per giro. Con 4–6 fonti si sta stabilmente sotto le 5 chiamate a settimana.
+Il piano gratuito di Gemini non si paga, ma si esaurisce. Il radar ci sta dentro con ampio margine
+grazie a **tre risparmi fatti prima di spendere una chiamata**:
+
+1. le pagine troppo corte o senza una sola parola da bando non arrivano al modello;
+2. le pagine **identiche** al giro precedente nemmeno — è il risparmio più grosso: un portale
+   pubblica ogni due settimane, il radar passa ogni lunedì;
+3. un tetto duro di chiamate per giro: quando si raggiunge, il giro si chiude ordinatamente e le
+   fonti rimaste si leggeranno la volta dopo.
+
+Con 4–6 fonti si sta stabilmente **sotto le 5 chiamate a settimana**.
 
 ## Com'è fatto
 
@@ -127,28 +148,36 @@ tetto duro di chiamate per giro. Con 4–6 fonti si sta stabilmente sotto le 5 c
 | [`apps-script/06-Preparazione.gs`](apps-script/06-Preparazione.gs) | crea i tre fogli, la diagnostica |
 | [`apps-script/Pannello.html`](apps-script/Pannello.html) | il pannello delle impostazioni |
 | [`installazione-rapida/`](installazione-rapida/) | gli stessi file impacchettati in due, per l'installazione |
-| [`prova/prova-logica.js`](prova/prova-logica.js) | 33 controlli sulle funzioni pure, `node prova/prova-logica.js`, senza rete |
 | [`foglio-esempio/`](foglio-esempio/) | il foglio `.xlsx` già intestato, e lo script che lo genera |
 
-I sette file sono divisi per **come le cose accadono**, non per categorie astratte, e sono commentati
-per essere letti da chi programma poco: nascono da un laboratorio, e il codice è parte di ciò che si
-insegna. Dopo ogni modifica: `node installazione-rapida/unisci.mjs` rigenera il pacchetto in due file.
+I sette file sono divisi per **come le cose accadono** — configurazione, fonti, modello, foglio,
+giro, menu, preparazione — e sono commentati per essere letti da chi programma poco: nascono da un
+laboratorio, e il codice è parte di ciò che si insegna. Dopo ogni modifica,
+`node installazione-rapida/unisci.mjs` rigenera il pacchetto in due file.
 
 ## Contribuire
 
-Le cose più utili che puoi mandare: **fonti che funzionano** (pagine di elenco avvisi che
-rispondono senza JavaScript, soprattutto comunali), **regole di prompt** che hanno corretto un
-errore vero che hai visto, e i **casi in cui ha sbagliato** — quelli valgono più di tutto: il
-registro `LOG` di un radar acceso da mesi è un dato raro su quanto sono affidabili questi
-strumenti in un ufficio pubblico.
+Le cose più utili che puoi mandare:
+
+- **fonti che funzionano** — pagine di elenco avvisi che rispondono senza JavaScript, soprattutto comunali;
+- **regole di prompt** che hanno corretto un errore vero che hai visto;
+- **i casi in cui ha sbagliato** — valgono più di tutto: il registro `LOG` di un radar acceso da
+  mesi è un dato raro su quanto sono affidabili questi strumenti dentro un ufficio pubblico.
 
 ## Licenza
 
-[MIT](LICENSE) — usalo, modificalo, mettilo nel tuo Comune. Se ti è servito, dillo: fa piacere e
+[MIT](LICENSE) — usalo, modificalo, mettilo nel tuo Comune. Se ti è servito, dillo: fa piacere, e
 aiuta il progetto.
 
 ---
 
-**Progetto PARTECIPA — Giovani Campania** · Università degli Studi di Salerno, Dipartimento
-DISUFF / DiSoSW Lab · Regione Campania · CUP D43C25000560002
-Ideazione, sviluppo e manutenzione **[Logika.studio](https://logikastudio.it)** — partner tecnico.
+<div align="center">
+
+<img src="assets/logo-logika-studio.png" alt="Logika.studio" width="52">
+
+**[Logika.studio](https://logikastudio.it)** — ideazione, sviluppo e manutenzione · partner tecnico
+
+<sub>Progetto **PARTECIPA — Giovani Campania** · Università degli Studi di Salerno, Dipartimento DISUFF / DiSoSW Lab<br>
+Regione Campania · CUP D43C25000560002 · [partecipagiovanicampania.it](https://partecipagiovanicampania.it)</sub>
+
+</div>
