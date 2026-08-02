@@ -38,8 +38,7 @@ Il radar fa quella cosa lì, e solo quella.
 flowchart TD
     S(["⏰ Ogni lunedì alle 8"]) -.-> A
     P["🌐 Portali dei bandi"] -->|"la pagina, ripulita"| A["⚙️ Apps Script<br/>nel tuo Foglio"]
-    A -->|"che c'è in questa pagina?"| G["✨ Gemini<br/>piano gratuito"]
-    G -->|"le opportunità trovate,<br/>o «qui non c'è niente»"| A
+    A <-->|"che c'è in questa pagina?<br/>le opportunità, o «niente»"| G["✨ Gemini<br/>piano gratuito"]
     A --> F[("📊 Foglio<br/>OPPORTUNITÀ · LOG")]
     A --> B["✉️ Bozza in Gmail<br/>ferma, in attesa"]
     B --> U(["🧑 Una persona<br/>controlla e invia"])
