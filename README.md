@@ -36,27 +36,19 @@ Il radar fa quella cosa lì, e solo quella.
 
 ```mermaid
 flowchart TD
-    P["🌐 Portali dei bandi<br/><small>le pagine che gli dai tu</small>"]
-    A["⚙️ Apps Script<br/><small>dentro il tuo Foglio</small>"]
-    G["✨ Gemini<br/><small>piano gratuito</small>"]
-    F[("📊 Foglio<br/>OPPORTUNITÀ · LOG")]
-    B["✉️ Bozza in Gmail<br/><small>ferma, in attesa</small>"]
-    U(["🧑 Una persona<br/>controlla e invia"])
-    D["👥 Associazioni, scuole, ragazzi"]
-    S(["⏰ Sveglia<br/>ogni lunedì alle 8"])
+    S(["⏰ Ogni lunedì alle 8"]) -.-> A
+    P["🌐 Portali dei bandi"] -->|"la pagina, ripulita"| A["⚙️ Apps Script<br/>nel tuo Foglio"]
+    A -->|"che c'è in questa pagina?"| G["✨ Gemini<br/>piano gratuito"]
+    G -->|"le opportunità trovate,<br/>o «qui non c'è niente»"| A
+    A --> F[("📊 Foglio<br/>OPPORTUNITÀ · LOG")]
+    A --> B["✉️ Bozza in Gmail<br/>ferma, in attesa"]
+    B --> U(["🧑 Una persona<br/>controlla e invia"])
+    U --> D["👥 Associazioni,<br/>scuole, ragazzi"]
 
-    S -.->|sveglia il radar| A
-    P -->|"la pagina, ripulita"| A
-    A <-->|"le opportunità trovate<br/>oppure «qui non c'è niente»"| G
-    A --> F
-    A --> B
-    B --> U
-    U -->|"solo dopo il suo sì"| D
-
-    classDef macchina fill:#1C2E6E,stroke:#141F4A,color:#fff,stroke-width:0px;
+    classDef macchina fill:#1C2E6E,stroke:#141F4A,color:#ffffff;
     classDef fuori fill:#eef1f6,stroke:#c8ccd6,color:#1f2430;
-    classDef umano fill:#B45309,stroke:#8a3f07,color:#fff,stroke-width:0px;
-    classDef dato fill:#0f766e,stroke:#0b544e,color:#fff,stroke-width:0px;
+    classDef umano fill:#B45309,stroke:#8a3f07,color:#ffffff;
+    classDef dato fill:#0f766e,stroke:#0b544e,color:#ffffff;
 
     class A,G macchina
     class P,D,S fuori
