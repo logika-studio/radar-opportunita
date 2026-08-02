@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo-logika-studio.png" alt="Logika.studio" width="76">
+<a href="https://logikastudio.it"><img src="https://logikastudio.it/logo-icon.png" alt="Logika.studio" width="76"></a>
 
 # Radar delle opportunità
 
@@ -34,20 +34,37 @@ piccolo non ha una persona che ogni lunedì mattina apre dieci siti.
 
 Il radar fa quella cosa lì, e solo quella.
 
+```mermaid
+flowchart TD
+    P["🌐 Portali dei bandi<br/><small>le pagine che gli dai tu</small>"]
+    A["⚙️ Apps Script<br/><small>dentro il tuo Foglio</small>"]
+    G["✨ Gemini<br/><small>piano gratuito</small>"]
+    F[("📊 Foglio<br/>OPPORTUNITÀ · LOG")]
+    B["✉️ Bozza in Gmail<br/><small>ferma, in attesa</small>"]
+    U(["🧑 Una persona<br/>controlla e invia"])
+    D["👥 Associazioni, scuole, ragazzi"]
+    S(["⏰ Sveglia<br/>ogni lunedì alle 8"])
+
+    S -.->|sveglia il radar| A
+    P -->|"la pagina, ripulita"| A
+    A <-->|"le opportunità trovate<br/>oppure «qui non c'è niente»"| G
+    A --> F
+    A --> B
+    B --> U
+    U -->|"solo dopo il suo sì"| D
+
+    classDef macchina fill:#1C2E6E,stroke:#141F4A,color:#fff,stroke-width:0px;
+    classDef fuori fill:#eef1f6,stroke:#c8ccd6,color:#1f2430;
+    classDef umano fill:#B45309,stroke:#8a3f07,color:#fff,stroke-width:0px;
+    classDef dato fill:#0f766e,stroke:#0b544e,color:#fff,stroke-width:0px;
+
+    class A,G macchina
+    class P,D,S fuori
+    class B,U umano
+    class F dato
 ```
-   [Portali bandi]  ──►  [Apps Script]  ──►  [Gemini · piano gratuito]
-                               │                        │
-                               │   ◄── l'elenco delle opportunità,
-                               │       oppure «qui non c'è niente»
-                               ▼
-                   ┌───────────────────────────┐
-                   │  Foglio: OPPORTUNITÀ · LOG │
-                   └───────────────────────────┘
-                               │
-                               ├──►  [Gmail: BOZZA]  ──(la legge e la invia una persona)──►  destinatari
-                               │
-                          [sveglia settimanale]
-```
+
+<sub>Tutto quello che è arancione richiede **una persona**: è il punto del progetto, non un dettaglio.</sub>
 
 ## Che cosa **non** fa — ed è la parte importante
 
@@ -85,6 +102,8 @@ Il radar fa quella cosa lì, e solo quella.
 10. **Radar → Accendi la sveglia settimanale**. Da qui in poi va da solo.
 
 Se qualcosa non torna: **Radar → Diagnostica** dice a che punto si è rotto.
+
+> 📘 **[La guida passo-passo del laboratorio](guida/radar-guida-passo-passo.html)** — gli stessi passi raccontati per esteso, con le schermate che vedrai, gli errori tipici e le spunte per non perdere il segno. È il materiale distribuito alla Certosa di Padula: scaricala e aprila nel browser.
 
 ## Le fonti: quali funzionano, e perché quasi tutte no
 
@@ -149,6 +168,7 @@ Con 4–6 fonti si sta stabilmente **sotto le 5 chiamate a settimana**.
 | [`apps-script/Pannello.html`](apps-script/Pannello.html) | il pannello delle impostazioni |
 | [`installazione-rapida/`](installazione-rapida/) | gli stessi file impacchettati in due, per l'installazione |
 | [`foglio-esempio/`](foglio-esempio/) | il foglio `.xlsx` già intestato, e lo script che lo genera |
+| [`guida/`](guida/) | la guida passo-passo del laboratorio, un file HTML solo: si apre nel browser, si stampa, si mette su una chiavetta |
 
 I sette file sono divisi per **come le cose accadono** — configurazione, fonti, modello, foglio,
 giro, menu, preparazione — e sono commentati per essere letti da chi programma poco: nascono da un
@@ -173,7 +193,7 @@ aiuta il progetto.
 
 <div align="center">
 
-<img src="assets/logo-logika-studio.png" alt="Logika.studio" width="52">
+<a href="https://logikastudio.it"><img src="https://logikastudio.it/logo-icon.png" alt="Logika.studio" width="52"></a>
 
 **[Logika.studio](https://logikastudio.it)** — ideazione, sviluppo e manutenzione · partner tecnico
 
